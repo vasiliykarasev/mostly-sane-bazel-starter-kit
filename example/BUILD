@@ -7,14 +7,38 @@ py_test(
     main = "main.py",
     deps = [
         ":example_pb_py",
-        "//external:protobuf_python",
+        "@com_google_absl_py//absl:app",
+        "@com_google_absl_py//absl/flags",
+        "@com_google_absl_py//absl/logging",
+    ],
+)
+
+py_test(
+    name = "main_py_test",
+    srcs = ["main_test.py"],
+    main = "main_test.py",
+    deps = [
+        "@com_google_absl_py//absl/logging",
+        "@com_google_absl_py//absl/testing:absltest",
     ],
 )
 
 cc_test(
     name = "main_cc",
     srcs = ["main.cc"],
-    deps = [":example_pb_cc"],
+    deps = [
+        ":example_pb_cc",
+        "@com_google_absl//absl/flags:flag",
+        "@com_google_absl//absl/log",
+        "@com_google_absl//absl/log:initialize",
+        "@com_google_absl//absl/strings",
+    ],
+)
+
+cc_test(
+    name = "main_cc_test",
+    srcs = ["main_test.cc"],
+    deps = ["@com_google_googletest//:gtest_main"],
 )
 
 proto_library(
