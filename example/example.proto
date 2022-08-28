@@ -1,0 +1,6 @@
+syntax = "proto2";
+
+message ExampleProto {
+  optional string name = 1;
+  optional int32 value = 2;
+}
