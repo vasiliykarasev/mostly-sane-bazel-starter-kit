@@ -1,5 +1,4 @@
 load("@rules_proto_grpc//python:defs.bzl", "python_proto_library")
-load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
 
 py_test(
     name = "main_py",
@@ -52,7 +51,7 @@ python_proto_library(
     deps = ["//external:protobuf_python"],
 )
 
-cpp_proto_library(
+cc_proto_library(
     name = "example_pb_cc",
-    protos = [":example_proto"],
+    deps = [":example_proto"],
 )
